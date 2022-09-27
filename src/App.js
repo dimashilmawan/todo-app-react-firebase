@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
 	collection,
 	query,
@@ -27,7 +27,7 @@ const classes = {
 
 function App() {
 	const [todos, setTodos] = useState([]);
-	const [input, setInput] = useState("");
+	const inputRef = useRef();
 	const [loading, setLoading] = useState(true);
 	console.log("app");
 	// Read
@@ -46,16 +46,17 @@ function App() {
 
 	// Create
 	const addTodo = async e => {
+		const inputEl = inputRef.current.value;
 		e.preventDefault();
-		if (input.length === 0) {
+		if (inputEl.length === 0) {
 			alert("Please fill input");
 			return;
 		}
+		inputRef.current.value = "";
 		await addDoc(collection(db, "todos"), {
-			text: input,
+			text: inputEl,
 			completed: false,
 		});
-		setInput("");
 	};
 
 	// Update
@@ -76,10 +77,9 @@ function App() {
 				<form onSubmit={addTodo} className={classes.form}>
 					<input
 						className={classes.input}
-						onChange={e => setInput(e.target.value)}
 						type="text"
 						placeholder="Add todo"
-						value={input}
+						ref={inputRef}
 					/>
 					<button className={classes.button}>
 						<AiOutlinePlus size={30} />

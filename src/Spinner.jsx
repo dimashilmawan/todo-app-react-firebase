@@ -5,16 +5,16 @@ const Spinner = () => {
 	return (
 		<div className="mt-4 flex items-center justify-center">
 			<Oval
-				height={40}
-				width={40}
+				height={35}
+				width={35}
 				color="#10b981"
 				wrapperStyle={{}}
 				wrapperClass=""
 				visible={true}
 				ariaLabel="oval-loading"
 				secondaryColor="#10b981"
-				strokeWidth={2}
-				strokeWidthSecondary={2}
+				strokeWidth={4}
+				strokeWidthSecondary={4}
 			/>
 		</div>
 	);

@@ -32,7 +32,7 @@ function App() {
 	const [isDarkMode, setIsDarkMode] = useState(false);
 	const inputRef = useRef();
 
-	const [value, loading, error] = useCollection(
+	const [value, loading] = useCollection(
 		query(collection(db, "todos"), orderBy("text")),
 		{
 			snapshotListenOptions: { includeMetadataChanges: true },

@@ -31,7 +31,6 @@ const classes = {
 function App() {
 	const [isDarkMode, setIsDarkMode] = useState(false);
 	const inputRef = useRef();
-	console.log(isDarkMode);
 
 	const [value, loading, error] = useCollection(
 		query(collection(db, "todos"), orderBy("text")),
